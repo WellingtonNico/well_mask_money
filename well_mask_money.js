@@ -1,5 +1,4 @@
 function _setupWellMaskMoneyOnInputs() {
- 
   function _setupWellMaskMoneyOn(input) {
     let {
       allowEmpty,
@@ -22,9 +21,9 @@ function _setupWellMaskMoneyOnInputs() {
     // ex: se era 0,00 e agora é 0,0 então o usuário quis apagar o valor todo
     const emptyTrigger = new Array(1 + decimalPlaces).join("0");
 
-    const _formatCurrency = (value) =>{
-      if(value<0 && !allowNegative){
-        value = -value
+    const _formatCurrency = (value) => {
+      if (value < 0 && !allowNegative) {
+        value = -value;
       }
       return Number(value).toLocaleString(
         locales,
@@ -35,7 +34,8 @@ function _setupWellMaskMoneyOnInputs() {
               currency: currency,
             }
           : { minimumFractionDigits: decimalPlaces }
-      );}
+      );
+    };
 
     const _wellMaskMoneyListener = () => {
       const isNegative = input.value.includes("-");
@@ -46,17 +46,14 @@ function _setupWellMaskMoneyOnInputs() {
         // converte pra negativo somente se necessário
         numberValue = -numberValue;
       }
-      input.numberValue = cleanedString.length ===0?null:numberValue
+      input.numberValue = cleanedString.length === 0 ? null : numberValue;
       let newValue;
       if (cleanedString === emptyTrigger || cleanedString.length === 0) {
         // se o campo foi limpo
         if (!allowEmpty || input.required) {
           // se não permite vazio preenche o campo na força
           newValue = _formatCurrency(0);
-        } else if (
-          cleanedString.length === 0 ||
-          input.lastNumberValue === 0
-        ) {
+        } else if (cleanedString.length === 0 || input.lastNumberValue === 0) {
           // se o campo já está limpo mantém limpo ou o último valor já era 0
           newValue = "";
         } else {
@@ -68,10 +65,10 @@ function _setupWellMaskMoneyOnInputs() {
       }
       input.lastNumberValue = numberValue;
       input.value = newValue;
-      return newValue
+      return newValue;
     };
-    input.applyWellMaskMoney = _formatCurrency
-    input.wellMaskMoneyListener = _wellMaskMoneyListener
+    input.applyWellMaskMoney = _formatCurrency;
+    input.wellMaskMoneyListener = _wellMaskMoneyListener;
     input.addEventListener("input", _wellMaskMoneyListener);
     input.addEventListener("change", _wellMaskMoneyListener);
     input.addEventListener("focus", _wellMaskMoneyListener);
