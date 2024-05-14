@@ -9,7 +9,14 @@ Simple library to mask currency inputs
 
 ## How to use
 
-Just put the script anywhere in your html template(it is recommended to import it only once) and configure the inputs by adding some data attributes to the inputs you want to mask:
+Just put the script in your html template. You can do it like this:
+
+```html
+<!-- well mask money cdn -->
+<script src="https://cdn.jsdelivr.net/gh/WellingtonNico/well_mask_money/well_mask_money.js"></script>
+```
+
+Then configure the inputs you wannt to apply the money mask by adding some data attributes:
 
 * `data-toggle`: it's value should be `well-mask-money` to automatically trigger setup
 * `data-locales`: language - default "pt-br"

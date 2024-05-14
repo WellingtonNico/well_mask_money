@@ -12,7 +12,6 @@ function _setupWellMaskMoneyOnInputs() {
 
     currency = currency || "BRL";
     locales = locales || "pt-br";
-    console.log({locales})
     allowEmpty = (allowEmpty || "true").toLocaleLowerCase() == "true";
     allowNegative = (allowNegative || "true").toLocaleLowerCase() == "true";
     useCurrencySymbol =
