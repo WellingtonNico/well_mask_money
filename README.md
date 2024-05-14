@@ -27,4 +27,15 @@ Then configure the inputs you wannt to apply the money mask by adding some data 
 * `data-decimal-places`: decimal places - default 2
 
 
+## Client side validation
+
+If you need to get the real number for some custom client side validation you can get the real value by catching the attribute `numberValue` from the input element like this:
+
+```javascript
+const input = document.getElementById('my-well-masked-input')
+if (input.numberValue < 1){
+    input.classList.add('is-invalid')
+}
+```
+
 ### be happy!

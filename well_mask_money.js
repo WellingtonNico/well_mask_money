@@ -43,6 +43,7 @@ function _setupWellMaskMoneyOnInputs() {
         // converte pra negativo somente se necessário
         numberValue = -numberValue;
       }
+      input.numberValue = cleanedString.length ===0?null:numberValue
       let newValue;
       if (cleanedString === emptyTrigger || cleanedString.length === 0) {
         // se o campo foi limpo
