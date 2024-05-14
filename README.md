@@ -2,6 +2,8 @@
 
 Simple library to mask currency inputs
 
+`it does not need jQuery`
+
 
 ## How to use
 
