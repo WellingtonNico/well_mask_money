@@ -3,7 +3,9 @@
 Simple library to mask currency inputs.
 
 Is this just one more js lib? No!
-`it does not need jQuery` and it easy allow 0 and empty at same time, which is a commom problem.
+
+`it does not need jQuery` and it's easy allow allow 0 and empty at same time, 
+which is a commom problem on another libraries.
 
 [Demonstration here](https://wellingtonnico.github.io/well_mask_money/)
 
