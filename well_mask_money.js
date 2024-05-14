@@ -22,8 +22,11 @@ function _setupWellMaskMoneyOnInputs() {
     // ex: se era 0,00 e agora é 0,0 então o usuário quis apagar o valor todo
     const emptyTrigger = new Array(1 + decimalPlaces).join("0");
 
-    const _formatCurrency = (valor) =>
-      Number(valor).toLocaleString(
+    const _formatCurrency = (value) =>{
+      if(value<0 && !allowNegative){
+        value = -value
+      }
+      return Number(value).toLocaleString(
         locales,
         useCurrencySymbol
           ? {
@@ -32,14 +35,14 @@ function _setupWellMaskMoneyOnInputs() {
               currency: currency,
             }
           : { minimumFractionDigits: decimalPlaces }
-      );
+      );}
 
     const _wellMaskMoneyListener = () => {
       const isNegative = input.value.includes("-");
       const convertToPositive = input.value.includes("+");
       const cleanedString = (input.value || "").replace(/\D+/g, "");
       let numberValue = Number(cleanedString || 0) / 10 ** decimalPlaces;
-      if (isNegative && !convertToPositive && allowNegative) {
+      if (isNegative && !convertToPositive) {
         // converte pra negativo somente se necessário
         numberValue = -numberValue;
       }
@@ -65,7 +68,10 @@ function _setupWellMaskMoneyOnInputs() {
       }
       input.lastNumberValue = numberValue;
       input.value = newValue;
+      return newValue
     };
+    input.applyWellMaskMoney = _formatCurrency
+    input.wellMaskMoneyListener = _wellMaskMoneyListener
     input.addEventListener("input", _wellMaskMoneyListener);
     input.addEventListener("change", _wellMaskMoneyListener);
     input.addEventListener("focus", _wellMaskMoneyListener);

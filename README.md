@@ -29,13 +29,33 @@ Then configure the inputs you wannt to apply the money mask by adding some data 
 
 ## Client side validation
 
-If you need to get the real number for some custom client side validation you can get the real value by catching the attribute `numberValue` from the input element like this:
+If you need to get the real number for some custom client side validation 
+you can get the real value by catching the attribute `numberValue` from the input element like this:
 
 ```javascript
 const input = document.getElementById('my-well-masked-input')
 if (input.numberValue < 1){
     input.classList.add('is-invalid')
 }
+```
+
+
+## Manually trigger mask
+
+Sometimes you need to change an input value directly with javascript but it does not trigger any event. 
+Don't worry! 
+You can manually trigger mask by using the function `applyWellMaskMoney` 
+or by calling the function `wellMaskMoneyListener` from the input itself like this:
+
+```javascript
+const input = document.getElementById('my-well-masked-input')
+
+// like this
+input.value = 33.33
+input.wellMaskMoneyListener()
+
+// or like this
+input.value = input.applyWellMaskMoney(33.33)
 ```
 
 ### be happy!
