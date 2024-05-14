@@ -1,8 +1,9 @@
 # Well Mask Money
 
-Simple library to mask currency inputs
+Simple library to mask currency inputs.
 
-`it does not need jQuery`
+Is this just one more js lib? No!
+`it does not need jQuery` and it easy allow 0 and empty at same time, which is a commom problem.
 
 [Demonstration here](https://wellingtonnico.github.io/well_mask_money/)
 
