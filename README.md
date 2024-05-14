@@ -42,7 +42,8 @@ if (input.numberValue < 1){
 
 ## Manually trigger mask
 
-Sometimes you need to change an input value directly with javascript but it does not trigger any event. 
+Sometimes you need to change an input value directly with javascript, 
+but it does not trigger any event. 
 Don't worry! 
 You can manually trigger mask by using the function `applyWellMaskMoney` 
 or by calling the function `wellMaskMoneyListener` from the input itself like this:
