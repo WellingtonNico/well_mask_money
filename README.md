@@ -4,6 +4,8 @@ Simple library to mask currency inputs
 
 `it does not need jQuery`
 
+[Demonstration here](https://wellingtonnico.github.io/well_mask_money/)
+
 
 ## How to use
 
