@@ -40,7 +40,7 @@ function _setupWellMaskMoneyOnInputs() {
     const _wellMaskMoneyListener = () => {
       const isNegative = input.value.includes("-");
       const convertToPositive = input.value.includes("+");
-      const cleanedString = (input.value || "").replace(/\D+/g, "");
+      const cleanedString = input.value.replace(/\D+/g, "");
       let numberValue = Number(cleanedString || 0) / 10 ** decimalPlaces;
       if (isNegative && !convertToPositive) {
         // converte pra negativo somente se necessário
