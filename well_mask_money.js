@@ -1,4 +1,8 @@
 (() => {
+  function _getWellMaskedInputs(parentNode) {
+    return [...parentNode.querySelectorAll('[data-toggle="well-mask-money"]')];
+  }
+
   function _setupWellMaskMoneyOn(input) {
     let {
       allowEmpty,
@@ -74,16 +78,14 @@
       input.addEventListener(eventType, _wellMaskMoneyListener)
     );
     // the type needed is text
-    input.type = "text";    
+    input.type = "text";
     // runs for the first time
     _wellMaskMoneyListener();
   }
 
   function _setupWellMaskMoneyOnInputs() {
     const obvserver = new MutationObserver(() => {
-      const inputs = [
-        ...document.querySelectorAll('[data-toggle="well-mask-money"]'),
-      ];
+      const inputs = _getWellMaskedInputs(document);
       inputs.forEach((input) => {
         if (!input.wellMaskMoneyConfigured) {
           _setupWellMaskMoneyOn(input);
