@@ -1,4 +1,4 @@
-function _setupWellMaskMoneyOnInputs() {
+(() => {
   function _setupWellMaskMoneyOn(input) {
     let {
       allowEmpty,
@@ -69,28 +69,31 @@ function _setupWellMaskMoneyOnInputs() {
     };
     input.applyWellMaskMoney = _formatCurrency;
     input.wellMaskMoneyListener = _wellMaskMoneyListener;
-    input.addEventListener("input", _wellMaskMoneyListener);
-    input.addEventListener("change", _wellMaskMoneyListener);
-    input.addEventListener("focus", _wellMaskMoneyListener);
-    input.type = "text";
+    // add the events needed to the input
+    ["input", "change", "focus"].forEach((eventType) =>
+      input.addEventListener(eventType, _wellMaskMoneyListener)
+    );
+    // the type needed is text
+    input.type = "text";    
+    // runs for the first time
     _wellMaskMoneyListener();
   }
 
-  const obvserver = new MutationObserver(() => {
-    const inputs = [
-      ...document.querySelectorAll('[data-toggle="well-mask-money"]'),
-    ];
-    inputs.forEach((input) => {
-      if (!input.wellMaskMoneyConfigured) {
-        _setupWellMaskMoneyOn(input);
-        input.wellMaskMoneyConfigured = true;
-      }
+  function _setupWellMaskMoneyOnInputs() {
+    const obvserver = new MutationObserver(() => {
+      const inputs = [
+        ...document.querySelectorAll('[data-toggle="well-mask-money"]'),
+      ];
+      inputs.forEach((input) => {
+        if (!input.wellMaskMoneyConfigured) {
+          _setupWellMaskMoneyOn(input);
+          input.wellMaskMoneyConfigured = true;
+        }
+      });
     });
-  });
 
-  obvserver.observe(document, { subtree: true, childList: true });
-}
+    obvserver.observe(document, { subtree: true, childList: true });
+  }
 
-_setupWellMaskMoneyOnInputs();
-
-document.addEventListener("DOMContentLoaded", _setupWellMaskMoneyOnInputs);
+  _setupWellMaskMoneyOnInputs();
+})();
